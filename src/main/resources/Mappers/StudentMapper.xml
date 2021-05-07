@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--绑定一个对应的Dao/Map接口-->
+<mapper namespace="com.joker.dao.IStudent">
+    <select id="allStudents" resultType="Student">
+        select * from Student
+    </select>
+
+    <select id="queryOne" resultType="Student">
+        select * from Student
+        <where>
+            <if test="id != null">
+                id=#{id}
+            </if>
+            <if test="password != null">
+            and password=#{password}
+            </if>
+        </where>
+
+
+    </select>
+    <update id="updateOne" parameterType="Student">
+        update student set name=#{name},password=#{password},ssex=#{ssex},major=#{major} where id=#{id};
+    </update>
+
+    <delete id="deleteOne">
+        delete from student where id=#{id}
+    </delete>
+</mapper>
